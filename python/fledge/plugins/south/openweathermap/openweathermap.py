@@ -57,7 +57,8 @@ _DEFAULT_CONFIG = {
         'type': 'string',
         'default': 'OpenWeatherMap',
         'order': '4',
-        'displayName': 'Asset Name'
+        'displayName': 'Asset Name',
+        'mandatory':  'true'
     },
     'rate': {
         'description': 'Rate at which to fetch weather report in seconds',
