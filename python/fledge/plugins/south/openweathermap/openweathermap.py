@@ -10,7 +10,6 @@ import copy
 import asyncio
 import http.client
 import json
-import uuid
 import logging
 from threading import Thread
 from aiohttp import web
@@ -58,7 +57,8 @@ _DEFAULT_CONFIG = {
         'type': 'string',
         'default': 'OpenWeatherMap',
         'order': '4',
-        'displayName': 'Asset Name'
+        'displayName': 'Asset Name',
+        'mandatory':  'true'
     },
     'rate': {
         'description': 'Rate at which to fetch weather report in seconds',
@@ -88,7 +88,7 @@ def plugin_info():
 
     return {
         'name': 'OpenWeatherMap plugin',
-        'version': '1.7.0',
+        'version': '1.8.0',
         'mode': 'async',
         'type': 'south',
         'interface': '1.0',
@@ -221,7 +221,6 @@ class WeatherReport(object):
             data = {
                 'asset': self.asset_name,
                 'timestamp': utils.local_timestamp(),
-                'key': str(uuid.uuid4()),
                 'readings': reads
             }
             async_ingest.ingest_callback(c_callback, c_ingest_ref, data)
