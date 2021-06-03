@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 # FLEDGE_BEGIN
-# See: http://fledge.readthedocs.io/
+# See: http://fledge-iot.readthedocs.io/
 # FLEDGE_END
 
 """ Weather report from OpenWeatherMap async plugin """
@@ -88,7 +88,7 @@ def plugin_info():
 
     return {
         'name': 'OpenWeatherMap plugin',
-        'version': '1.9.0',
+        'version': '1.9.1',
         'mode': 'async',
         'type': 'south',
         'interface': '1.0',
