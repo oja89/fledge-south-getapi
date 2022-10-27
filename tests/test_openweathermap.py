@@ -29,7 +29,7 @@ def test_plugin_contract():
 def test_plugin_info():
     assert openweathermap.plugin_info() == {
         'name': 'OpenWeatherMap plugin',
-        'version': '2.0.0',
+        'version': '2.0.1',
         'mode': 'async',
         'type': 'south',
         'interface': '1.0',
@@ -43,21 +43,19 @@ def test_plugin_init():
 
 
 def test_plugin_start():
-    with patch.object(openweathermap._LOGGER, 'info') as patch_logger_info:
-        with patch.dict(config['url'], {'value': config['url']['default']}):
-            with patch.dict(config['city'], {'value': config['city']['default']}):
-                with patch.dict(config['appid'], {'value': config['appid']['default']}):
-                    with patch.dict(config['rate'], {'value': config['rate']['default']}):
-                        with patch.dict(config['assetName'],
-                                        {'value': config['assetName']['default']}):
-                            openweathermap.plugin_start(config)
-                            Weather_Report = openweathermap.task
-                            with patch.object(openweathermap.loop, 'call_later', lambda: print(1)):
-                                assert config['url']['value'] == Weather_Report.url
-                                assert config['city']['value'] == Weather_Report.city
-                                assert config['appid']['value'] == Weather_Report.appid
-                                assert float(config['rate']['value']) == Weather_Report._interval
-    patch_logger_info.assert_called_once_with('plugin_start called')
+    with patch.dict(config['url'], {'value': config['url']['default']}):
+        with patch.dict(config['city'], {'value': config['city']['default']}):
+            with patch.dict(config['appid'], {'value': config['appid']['default']}):
+                with patch.dict(config['rate'], {'value': config['rate']['default']}):
+                    with patch.dict(config['assetName'],
+                                    {'value': config['assetName']['default']}):
+                        openweathermap.plugin_start(config)
+                        Weather_Report = openweathermap.task
+                        with patch.object(openweathermap.loop, 'call_later', lambda: print(1)):
+                            assert config['url']['value'] == Weather_Report.url
+                            assert config['city']['value'] == Weather_Report.city
+                            assert config['appid']['value'] == Weather_Report.appid
+                            assert float(config['rate']['value']) == Weather_Report._interval
     openweathermap.plugin_shutdown(config)
 
 
