@@ -1,5 +1,6 @@
 ============================
-fledge-south-openweathermap
+fledge-south-getapi
 ============================
 
-South Plugin for openweathermap `read more <python/fledge/plugins/south/openweathermap/readme.rst>`_
+South Plugin for Fledge.
+Adding more configurability for easier API configuration
